@@ -32,7 +32,7 @@ string extracTownName(vector<string> town)
 	}
 	townName = townName + town[town.size() - 1];
 	//out<<"townName: "<<townName<<"|"<<endl;
-		return townName;
+	return townName;
 }	
 			
 		
@@ -78,7 +78,7 @@ int main()
     {
     	//cout<<towns[i]<<endl;
     	m.addDestination(i, towns[i]);
-    	cout<<m.maps[i].getDestinationName()<<endl;
+    	//cout<<m.maps[i].getDestinationName()<<endl;
     }
     townFile.close();
     
@@ -86,11 +86,11 @@ int main()
     ifstream segmentsFile;
     int segmentsSize;
     //float 41.00 -> 41
-    float segmentsNumber;
+    double segmentsNumber;
 	segmentsFile.open("Program4Fall2013segments.txt");
     while (getline(segmentsFile, line))
     {
-    	vector<float> segments;
+    	vector<double> segments;
     	vector <string> input;
     	//split the line by space
 		istringstream stream(line);    
@@ -113,14 +113,10 @@ int main()
 			segmentsNumber = atof(input[i].c_str());
 			segments.push_back(segmentsNumber);
 		}
-		m.addVertex(segments[0], segments[1], segments[2], segments[3]);
+		double times = segments[2]/segments[3];
+		m.addVertex(segments[0], segments[1], segments[2], segments[3], (segments[2] / segments[3]));
     }
     segmentsFile.close();
-    for (int i = 0; i < townSize; i++)
-    {
-    	cout<<m.maps[i].getDestinationName()<<": "<<endl;
-    	m.maps[i].getList()->print();
-    }
     
     /**************deal with the trip*****************/
     ifstream tripsFile;
@@ -139,48 +135,18 @@ int main()
 		}
 		tripStart = atoi(input[0].c_str());
 		tripEnd = atoi(input[1].c_str());
-		if (input[2] == "T")
-		{
-			cout<<"Trip Start at: "<<tripStart<<endl;
-			cout<<"Trip End at: "<<tripEnd<<endl;
-			cout<<"Calculate type: The Shortest Time"<<endl;
-			dijkstra d(&m, townSize);
-			d.getStart(tripStart, "T");
-		}
-		
 		if (input[2] == "D")
 		{
-			cout<<"Trip Start at: "<<tripStart<<endl;
-			cout<<"Trip End at: "<<tripEnd<<endl;
-			cout<<"Calculate type: The Shortest Distance"<<endl;
 			dijkstra d(&m, townSize);
-			d.getStart(tripStart, "D");
+			d.getStart(tripStart, "T", tripEnd);
+		}
+		
+		if (input[2] == "T")
+		{
+			dijkstra d(&m, townSize);
+			d.getStartTime(tripStart, tripEnd);
 		}
 		cout<<endl;
 	}
 	tripsFile.close();
-	
-	/**
-	dijkstra d(&m, townSize);
-	cout<<"mapsize: "<<m.getMapSize()<<endl;
-	cout<<"Trip Start at: "<<tripStart<<endl;
-	cout<<"listSize: "<<m.maps[tripStart].getList()->getListSize()<<endl;
-	minHeap heap(m.maps[tripStart].getList()->getListSize());
-	node* r;
-	r = m.maps[tripStart].edges->first->next;
-	while (r!=0)
-	{
-		heap.insert(r->getDestination(), r->getDistance(), r->getSpeed());
-		r = r->next;
-	}
-	**/
-	minHeap heap(15);
-	heap.insert(12,0,0);
-	heap.deleteMin();
-	heap.insert(0,0.06, 340.0);
-	heap.insert(13,2.75,340.0);
-	cout<<heap.getMinimum().destination<<endl;
-	
-	
-	
 }

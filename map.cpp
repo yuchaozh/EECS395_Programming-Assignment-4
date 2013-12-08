@@ -38,9 +38,9 @@ void map::addDestination(int number, string name)
 }
 
 //add vertex in the adjacent list in the corresponding map_array_cell
-void map::addVertex(int start, int end, float distance, float speed)
+void map::addVertex(int start, int end, double distance, double speed, double time)
 {
-	maps[start].setList(end, distance, speed);
+	maps[start].setList(end, distance, speed, time);
 }
 
 //return the size of the map

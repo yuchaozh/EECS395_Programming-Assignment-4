@@ -21,7 +21,7 @@ public:
 	bool isEmpty();
 	void deleteMin();
 	void shiftDown(int nodeIndex);
-	void insert(int end, float distance, float speed);
+	void insert(int end, double distance, double speed, double time);
 	void shiftUp(int nodeIndex);
 	node getMinimum();
 	int getLeftChildIndex(int nodeIndex);

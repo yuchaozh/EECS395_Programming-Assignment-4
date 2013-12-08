@@ -23,7 +23,7 @@ public:
 	void addDestination(int cellNumber, string name);
 	
 	//add vertex in the map
-	void addVertex(int start, int end, float distance, float speed);
+	void addVertex(int start, int end, double distance, double speed, double time);
 	
 	//get the size of the map
 	int getMapSize();

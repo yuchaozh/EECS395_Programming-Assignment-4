@@ -18,7 +18,7 @@ class dijkstra
 {
 public:
 	vector<string> flag;
-	vector<float> distance;
+	vector<double> distance;
 	vector<int> previous;
 	map *mapOfAssignment;
 	//minHeap heap;
@@ -26,16 +26,9 @@ public:
 	//constructor
 	dijkstra(map *m, int townSize);
 	~dijkstra();
-
-	//judge the destination is know or unknow
-	bool isKnown(int *knownArr, int arrayLength);
-	//update the distance between the destination
-	void updateDistance(int destination,int* distanceArr,int* knownArr);
-	//return the nearest destination
-	int getNearest(int start,int* distanceArr,int* knownArr);
-	//return the shortest path
-	//int* getPath(int start);
-	void getStart(int start, string type);
+	
+	void getStartTime(int start, int end);
+	void getStart(int start, string type, int end);
 };
 
 #endif 

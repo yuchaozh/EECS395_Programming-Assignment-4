@@ -29,7 +29,7 @@ public:
 	void setDestinationName(string name);
 	
 	//set the outgoing vertex in correspoing list
-	void setList(int end, float distance, float speed);
+	void setList(int end, double distance, double speed, double time);
 	
 	//return the name of the destination
 	string getDestinationName();

@@ -31,9 +31,9 @@ list::~list()
 }
 
 //insert the vertex at the front of the adjacent list
-void list::insert_at_front(int e, float d, float s)
+void list::insert_at_front(int e, double d, double s, double t)
 {
-	node* vertex = new node(e, d, s);
+	node* vertex = new node(e, d, s, t);
 	vertex->next = first->next;
 	first->next = vertex;
 	listSize++;
@@ -47,7 +47,8 @@ void list::print()
 	{
 		cout<<current->getDestination()<<"  "
 		<<current->getDistance()<<"  "
-		<<current->getSpeed()<<endl;
+		<<current->getSpeed()<<"   "
+		<<current->getTime()<<endl;;
 		current = current->next;
 	}
 	cout<<endl;
@@ -58,7 +59,27 @@ int list::getListSize()
 	return listSize;
 }
 
+double list::searchDistance(int end)
+{
+	node* current = first->next;
+	while(current)
+	{
+		if (end == current->getDestination())
+			return current->getDistance();
+		current = current->next;
+	}
+}
 
+double list::searchTime(int end)
+{
+	node* current = first->next;
+	while(current)
+	{
+		if (end == current->getDestination())
+			return current->getTime();
+		current = current->next;
+	}
+}
 
 
 

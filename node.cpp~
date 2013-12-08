@@ -14,15 +14,17 @@ node::node()
 	destination = 0;
 	roadDistance = 0;
 	speed = 0;
+	time = 0
 	next = NULL;
 }
 
 //constructor
-node::node(int end,float distance, int s)
+node::node(int end, double distance, double s, double t)
 {
 	destination = end;
 	roadDistance = distance;
 	speed = s;
+	time = t;
 	next = NULL;
 }
 
@@ -39,15 +41,20 @@ void node::setDestination(int end)
 }
 
 //set the distance to the destination
-void node::setDistance(int distance)
+void node::setDistance(double distance)
 {
 	roadDistance = distance;
 }
 
 //set the speed
-void node::setSpeed(int s)
+void node::setSpeed(double s)
 {
 	speed = s;
+}
+
+void node::setTime(double t)
+{
+	time = t;
 }
 
 //return the destination
@@ -57,13 +64,18 @@ int node::getDestination()
 }
 
 //return the distance to the destination
-int node::getDistance()
+double node::getDistance()
 {
 	return roadDistance;
 }
 
 //return the speed
-int node::getSpeed()
+double node::getSpeed()
 {
 	return speed;
+}
+
+double node::getTime()
+{
+	return time;
 }

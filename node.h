@@ -13,14 +13,15 @@ public:
 	//store the index of destination in the array_cell
 	int destination;
 	//store the distance to the destination
-	float roadDistance;
+	double roadDistance;
 	//store the speed
-	float speed;
+	double speed;
+	double time;
 	node *next;
 
 	//constrctor
 	node();
-	node(int end,float distance, float speed);
+	node(int end, double distance, double speed, double time);
 	
 	//destructor
 	~node();
@@ -29,18 +30,22 @@ public:
 	void setDestination(int end);  
 	
 	//set the distance to the destination
-	void setDistance(float distance); 
+	void setDistance(double distance); 
 	
 	//set the speed
-	void setSpeed(float s);
+	void setSpeed(double s);
+	
+	void setTime(double t);
 	
 	//return the destination
 	int getDestination();  
 	
 	//return the distance to the destination
-	float getDistance(); 
+	double getDistance(); 
 	
 	//return the speed
-	float getSpeed();
+	double getSpeed();
+	
+	double getTime();
 };
 #endif

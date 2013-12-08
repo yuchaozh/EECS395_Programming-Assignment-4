@@ -26,9 +26,9 @@ void town::setDestinationName(string name)
 }
 
 //set the information of vertex into the adjacent list
-void town::setList(int end, float distance, float speed)
+void town::setList(int end, double distance, double speed, double time)
 {
-	edges->insert_at_front(end, distance, speed);
+	edges->insert_at_front(end, distance, speed, time);
 }
 
 //return the name of the destination

@@ -47,7 +47,7 @@ bool minHeap::isEmpty()
 	return (heapSize == 0);
 }
 
-void minHeap::insert(int end, float distance, float speed)
+void minHeap::insert(int end, double distance, double speed, double time)
 {
 	if (heapSize == arraySize)
     	throw string("Heap's underlying storage is overflow");
@@ -58,6 +58,7 @@ void minHeap::insert(int end, float distance, float speed)
 		data[heapSize - 1].destination = end;
 		data[heapSize - 1].roadDistance = distance;
 		data[heapSize - 1].speed = speed;
+		data[heapSize - 1].time = time;
         shiftUp(heapSize - 1);
     }
 }
