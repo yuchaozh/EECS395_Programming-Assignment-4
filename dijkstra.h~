@@ -21,7 +21,7 @@ public:
 	vector<float> distance;
 	vector<int> previous;
 	map *mapOfAssignment;
-	//minHeap heap;
+	minHeap heap;
 	
 	//constructor
 	dijkstra(map *m, int townSize);

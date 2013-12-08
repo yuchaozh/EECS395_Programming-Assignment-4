@@ -14,6 +14,8 @@ Implementation of the shortest path
 #include <cstring>
 
 #include "map.h"
+#include "minHeap.h"
+#include "dijkstra.h"
 
 using namespace std;
 
@@ -42,6 +44,8 @@ int main()
 	string str = "";
 	int townSize = 0;
 	ifstream townFile;
+	int tripStart;
+    int tripEnd;
 	townFile.open("Program4Fall2013locations.txt");
 	vector<string> towns;
 	while (getline(townFile, line))
@@ -120,13 +124,9 @@ int main()
     
     /**************deal with the trip*****************/
     ifstream tripsFile;
-    int tripStart;
-    int tripEnd;
     tripsFile.open("Program4Fall2013trips.txt");
     while (getline(tripsFile, line))
     {
-    	int tripStart;
-    	int tripEnd;
     	istringstream stream(line);   
     	vector <string> input; 
 		while(stream>>str)   
@@ -144,6 +144,8 @@ int main()
 			cout<<"Trip Start at: "<<tripStart<<endl;
 			cout<<"Trip End at: "<<tripEnd<<endl;
 			cout<<"Calculate type: The Shortest Time"<<endl;
+			dijkstra d(&m, townSize);
+			d.getStart(tripStart, "T");
 		}
 		
 		if (input[2] == "D")
@@ -151,8 +153,34 @@ int main()
 			cout<<"Trip Start at: "<<tripStart<<endl;
 			cout<<"Trip End at: "<<tripEnd<<endl;
 			cout<<"Calculate type: The Shortest Distance"<<endl;
+			dijkstra d(&m, townSize);
+			d.getStart(tripStart, "D");
 		}
 		cout<<endl;
 	}
 	tripsFile.close();
+	
+	/**
+	dijkstra d(&m, townSize);
+	cout<<"mapsize: "<<m.getMapSize()<<endl;
+	cout<<"Trip Start at: "<<tripStart<<endl;
+	cout<<"listSize: "<<m.maps[tripStart].getList()->getListSize()<<endl;
+	minHeap heap(m.maps[tripStart].getList()->getListSize());
+	node* r;
+	r = m.maps[tripStart].edges->first->next;
+	while (r!=0)
+	{
+		heap.insert(r->getDestination(), r->getDistance(), r->getSpeed());
+		r = r->next;
+	}
+	**/
+	minHeap heap(15);
+	heap.insert(12,0,0);
+	heap.deleteMin();
+	heap.insert(0,0.06, 340.0);
+	heap.insert(13,2.75,340.0);
+	cout<<heap.getMinimum().destination<<endl;
+	
+	
+	
 }

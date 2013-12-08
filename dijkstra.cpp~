@@ -56,27 +56,27 @@ void dijkstra::getStart(int start, string type)
 	cout<<"begin: insert "<<start<<" into heap"<<endl;
 	while(heap.isEmpty() == false)
 	{
-		//cout<<heap.getMinimum().destination<<endl;
+		cout<<heap.getMinimum().destination<<endl;
 		deletedNodeIndex = heap.getMinimum().destination;
 		heap.deleteMin();
-		//cout<<"deletedNodeIndex: "<<deletedNodeIndex<<endl;
+		cout<<"deletedNodeIndex: "<<deletedNodeIndex<<endl;
 		//cout<<"deletedNodeIndex: "<<deletedNodeIndex<<endl;
 		flag[deletedNodeIndex] = "T";
 		node* r;
 		r = mapOfAssignment->maps[deletedNodeIndex].edges->first->next;
 		while(r!=0)
 		{
-			//cout<<"distance to the node( "<<r->getDestination()<<" ) "<<r->getDistance()<<endl;
+			cout<<"distance to the node( "<<r->getDestination()<<" ) "<<r->getDistance()<<endl;
 			//shortestDistance = distance[deletedNodeIndex] + r->getDistance();
 			shortestDistance = distance[deletedNodeIndex] + r->getDistance();
 			if ((flag[r->getDestination()] == "F") && (shortestDistance < distance[r->getDestination()]))
 			{
 				distance[r->getDestination()] = shortestDistance;
-				//cout<<"distance changed( "<<r->getDestination()<<" ) "<<shortestDistance<<endl;
+				cout<<"distance changed( "<<r->getDestination()<<" ) "<<shortestDistance<<endl;
 				previous[r->getDestination()] = deletedNodeIndex;
-				//cout<<"previous changed( "<<r->getDestination()<<" )"<<previous[r->getDestination()]<<endl;
+				cout<<"previous changed( "<<r->getDestination()<<" )"<<previous[r->getDestination()]<<endl;
 				heap.insert(r->getDestination(), shortestDistance, r->getSpeed());
-				//cout<<"insert "<<r->getDestination()<<" into the heap"<<" shortestDistance: "<<shortestDistance<<endl;
+				cout<<"insert "<<r->getDestination()<<" into the heap"<<" shortestDistance: "<<shortestDistance<<endl;
 				
 			}
 			r = r->next;

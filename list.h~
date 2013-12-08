@@ -13,6 +13,7 @@ class list
 {	
 public:
 	node * first;
+	int listSize = 0;
 
 	//constructor
 	list();
@@ -22,6 +23,9 @@ public:
 	
 	//insert the connection at front
 	void insert_at_front(int e, float d, float s);
+	
+	//get the size of the list
+	int getListSize();
 	
 	//print out the list
 	void print();

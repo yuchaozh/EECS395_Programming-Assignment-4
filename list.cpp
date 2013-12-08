@@ -14,6 +14,7 @@ using namespace std;
 list::list()
 {
 	first = new node();
+	listSize = 0;
 	first->next = NULL;
 }
 
@@ -35,6 +36,7 @@ void list::insert_at_front(int e, float d, float s)
 	node* vertex = new node(e, d, s);
 	vertex->next = first->next;
 	first->next = vertex;
+	listSize++;
 }
 
 //print out the adjacent list
@@ -51,6 +53,10 @@ void list::print()
 	cout<<endl;
 }
 
+int list::getListSize()
+{
+	return listSize;
+}
 
 
 
